@@ -11,6 +11,8 @@ if (envFound.error) {
 export default {
   port: process.env.PORT || 3001,
 
+  googleKey: process.env.GOOGLE_KEY,
+
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
   },
