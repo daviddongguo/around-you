@@ -12,6 +12,7 @@ export default {
   port: process.env.PORT || 3001,
 
   googleKey: process.env.GOOGLE_KEY,
+  googleBaseUrl: process.env.BASE_URL,
 
   logs: {
     level: process.env.LOG_LEVEL || 'silly',

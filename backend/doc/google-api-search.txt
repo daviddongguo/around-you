@@ -2,7 +2,7 @@
 
 https://maps.googleapis.com/maps/api/place/nearbysearch/json?
 key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0
-types=restaurant
+&types=restaurant
 &location=45.519728,-73.5882657
 &rankby=distance
 
