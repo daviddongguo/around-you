@@ -1,19 +1,16 @@
-import axios from 'axios';
 import express, {Request, Response} from 'express';
-import config from '../../../config';
 import {logger} from '../../common/loaders/logger';
+import {Restaurant} from './restaurantService';
 
 const router = express.Router();
 
-router.get('/api/restaurants',async (req: Request, res: Response) => {
-
+router.get('/api/restaurants/top3',async (req: Request, res: Response) => {
 
   try{
-    const response = await axios.get(config.googleBaseUrl + '&rankby=distance');
-		return res.status(200).send({"token": response.data.next_page_token, "restaurants": response.data.results });
+    const results = await Restaurant.searchTop3();
+		return res.status(200).send({"restaurants" : results});
   }catch(error){
     logger.error(error.message);
-    return res.status(404).send();
   }
 
 
