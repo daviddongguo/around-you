@@ -1,0 +1,22 @@
+2.Connect with the API of Google and display a list of 20 restaurants sorted by distance to the geolocation of the office of Guarana
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?
+key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0
+types=restaurant
+&location=45.519728,-73.5882657
+&rankby=distance
+
+
+1. Connect with the API of Google and display the top 3 most rated restaurants in a 3Km area from Guarana's office (45.519728,-73.5882657)
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?
+key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0
+&types=restaurant
+&location=45.519728,-73.5882657
+&radius=3000
+
+
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&pagetoken=
+
+
+
