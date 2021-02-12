@@ -5,8 +5,8 @@ class Header extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Top restaurants around</h1>
-				<p>Based on reviews</p>
+				<h1>Welcome to Montreal</h1>
+				<p>Restaurants around Guarana's Office</p>
 				<img src={headerImg} alt='' width='375px' />
 			</div>
 		);
