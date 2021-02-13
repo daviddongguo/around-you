@@ -14,8 +14,12 @@ export class Restaurant {
 				address: string;
 				phonenumber: string;
 			}[] = [];
-			const json = (await axios.get(config.googleBaseUrl + '&rankby=distance'))
-				.data.results;
+			const json = (
+				await axios.get(
+					config.googleBaseUrl +
+						'&types=restaurant&location=45.519728,-73.5882657&rankby=distance'
+				)
+			).data.results;
 			const jsonAsArray = Object.keys(json).map(function (key) {
 				return json[key];
 			});
@@ -75,19 +79,40 @@ export class Restaurant {
 	}
 
 	static async searchTop3() {
+		var restaurants: {
+			name: string;
+			photoreference: string;
+			place_id: string;
+			rating: string;
+		}[] = [];
+
 		try {
-			var restaurants: {
-				name: string;
-				photoreference: string;
-				place_id: string;
-				rating: string;
-			}[] = [];
 			//TODO sort all restaurant in 3 km not only the first 20 items
-			const json = (await axios.get(config.googleBaseUrl + '&radius=3000')).data
-				.results;
-			const jsonAsArray = Object.keys(json)
+			const first = (
+				await axios.get(
+					config.googleBaseUrl +
+						'&types=restaurant&location=45.519728,-73.5882657&radius=3000'
+				)
+			).data;
+			var token = first.next_page_token;
+			var list = first.results;
+
+			while (first.results.length >= 20) {
+				const response = (
+					await axios.get(config.googleBaseUrl + '&pagetoken=' + token)
+				).data;
+				token = response.next_page_token;
+				list = list.concat(response.results);
+				if (response.results.length < 20) {
+					break;
+				}
+			}
+
+			logger.info(list.length);
+
+			const jsonAsArray = Object.keys(list)
 				.map(function (key) {
-					return json[key];
+					return list[key];
 				})
 				.sort(function (itemA, itemB) {
 					return itemB.rating - itemA.rating;
