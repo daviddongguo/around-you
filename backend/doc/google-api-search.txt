@@ -23,3 +23,9 @@ key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0
 &photoreference=ATtYBwIHVxY-DAZI1YXaleAK0zFBjE3WXgVPOyDMGXWkd3pEjewCqyEkVngavCas2AjHQzFoZJM7BfWtq1T4fDFxZe52Fhkv8I5XABzyESGVE_SzzIN-wKAVap9zFJc0A4sPktbcp7RtciB9xh3ZuDy6heIUiWf948eKQ80P9Og2dnxPnHo6
 
 
+// place details
+https://maps.googleapis.com/maps/api/place/details/json?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&fields=name,rating,formatted_phone_number,reviews&place_id=ChIJTzmvr9MbyUwRB_fdOYv8wrM
+
+
+
+

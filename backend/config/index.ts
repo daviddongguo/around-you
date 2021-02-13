@@ -14,6 +14,7 @@ export default {
   googleKey: process.env.GOOGLE_KEY,
   googleBaseUrl: process.env.BASE_URL,
   googlePhotoUrl: process.env.PHOTO_URL,
+  googlePlaceDetailsUrl: process.env.PLACE_DETAIL_URL,
 
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
