@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  max-width: 375px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,45 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+/* Banner Stylings */
+#banner {
+  position: relative;
+  text-align: center;
+  max-width: 375px;
+}
+#banner_bg {
+  opacity: 1;
+  max-width: 375px;
+}
+#banner_name {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -90%);
+  max-width: 375px;
+  font-size: 5vw;
+  font-family: "Arial", cursive, sans-serif;
+  color: white;
+}
+#banner_slogan {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  max-width: 375px;
+  font-size: 3.5vw;
+  width: 80%;
+  color: rgb(240, 238, 227);
+}
+#banner_icon {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+#banner_icon_img {
+  max-width: 25px;
 }
