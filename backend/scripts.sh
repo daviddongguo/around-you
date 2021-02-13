@@ -7,6 +7,7 @@ npm install moment @types/moment helmet @types/helmet
 npm install compression @types/compression
 npm install cors @types/cors
 npm install axios @types/axios
+npm install node-mailjet
 
 tsc --init
 
