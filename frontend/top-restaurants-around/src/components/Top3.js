@@ -24,6 +24,8 @@ export default function Top3() {
 
 	return (
 		<div>
+			<h2>Top restaurants around</h2>
+			<p>Based on reviews</p>
 			<table>
 				<tr>{list}</tr>
 			</table>

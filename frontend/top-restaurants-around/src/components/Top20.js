@@ -26,6 +26,8 @@ export default function Top20() {
 
 	return (
 		<div>
+			<h2>General list of Restaurants</h2>
+			<p>Sorted by distance (closest first)</p>
 			<table>{list}</table>
 		</div>
 	);
