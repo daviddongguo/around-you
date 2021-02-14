@@ -18,7 +18,7 @@ const Contact = () => {
 		});
 	};
 	const title = (
-		<div id='contact_title'>
+		<div class='title' id='contact_title'>
 			<h2>Contact us</h2>
 		</div>
 	);

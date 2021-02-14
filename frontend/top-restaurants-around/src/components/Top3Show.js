@@ -1,7 +1,15 @@
 import useAxios from 'axios-hooks';
-import {Card, Col, Row} from 'reactstrap';
+import {
+	Card,
+	CardImg,
+	CardImgOverlay,
+	CardSubtitle,
+	CardTitle,
+	Col,
+	Row,
+} from 'reactstrap';
 
-export default function Top3() {
+export default function Top3Show() {
 	const [{data, loading, error}] = useAxios(
 		'http://localhost:3003/api/restaurants/top3'
 	);
@@ -16,17 +24,21 @@ export default function Top3() {
 
 		return (
 			<Col sm={4}>
-				<Card>
-					<img src={imageUrl} alt='' width='100%' />
-					<p>{r.name}</p>
-					<p>{r.rating}</p>
+				<Card inverse>
+					<CardImg bottom width='100%' src={imageUrl} alt='' />
+					<CardImgOverlay>
+						<CardTitle tag='h5'>{r.name}</CardTitle>
+						<CardSubtitle tag='h6' className='mb-2 text-muted'>
+							{r.rating}
+						</CardSubtitle>
+					</CardImgOverlay>
 				</Card>
 			</Col>
 		);
 	});
 
 	const title = (
-		<div>
+		<div class='title'>
 			<h2>Top restaurants around</h2>
 			<p>Based on reviews</p>
 		</div>

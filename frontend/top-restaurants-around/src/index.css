@@ -1,13 +1,17 @@
+.title{
+  margin-top: 3rem;
+  text-align: center;
+}
 
 /* Banner Stylings */
 #banner {
   position: relative;
   text-align: center;
-  max-width: 768px;
+  max-width: 100%;
 }
 #banner_bg {
   opacity: 1;
-  max-width: 768px;
+  max-width: 100%;
 }
 #banner_name {
   position: absolute;
@@ -15,7 +19,7 @@
   top: 45%;
   /* left: 20%; */
   transform: translate(-50%, -90%);
-  max-width: 768px;
+  max-width: 100%;
   font-size: 32px;
   /* font-size: 5vw; */
   font-family: "Arial", cursive, sans-serif;
@@ -26,7 +30,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -30%);
-  max-width: 768px;
+  max-width: 100%;
   font-size: 3.5vw;
   width: 80%;
   color: rgb(240, 238, 227);
@@ -43,9 +47,12 @@
 
 /* Top3 */
 #top3{
-  text-align: center;
   background-color:rgb(185, 182, 180);
 }
+/* #top3_image{
+  width: 240px;
+  height: 160px;
+} */
 
 
 /* Contact style */
@@ -60,7 +67,7 @@
   /* top: 45%; */
   /* left: 20%; */
   /* transform: translate(-50%, -90%); */
-  max-width: 768px;
+  max-width: 100%;
   font-size: 32px;
   height: 3rem;
   /* font-size: 5vw; */
