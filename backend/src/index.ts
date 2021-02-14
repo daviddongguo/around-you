@@ -7,6 +7,7 @@ import moment from 'moment';
 import morgan from 'morgan';
 import config from '../config';
 import {logger} from './common/loaders/logger';
+import {indexOfAdvertising} from './components/Advertising/advertisingRoute';
 import {indexOfEmailsender} from './components/email/emailRoute';
 import {indexOfRestaurants} from './components/restaurant/restaruantRoute';
 
@@ -30,6 +31,7 @@ app.use(helmet());
 
 app.use(indexOfRestaurants);
 app.use(indexOfEmailsender);
+app.use(indexOfAdvertising);
 
 app.listen(config.port, () => {
 	logger.info(`Server running on port ${config.port}`);
