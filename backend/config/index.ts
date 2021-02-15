@@ -12,7 +12,7 @@ export default {
   port: process.env.PORT || 3001,
 
   googleKey: process.env.GOOGLE_KEY,
-  googleBaseUrl: process.env.BASE_URL,
+  googleNearBySearchUrl: process.env.NEAR_BY_SEARCH,
   googlePhotoUrl: process.env.PHOTO_URL,
   googlePlaceDetailsUrl: process.env.PLACE_DETAIL_URL,
 

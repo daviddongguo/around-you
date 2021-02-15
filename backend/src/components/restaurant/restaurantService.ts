@@ -16,8 +16,8 @@ export class Restaurant {
 			}[] = [];
 			const json = (
 				await axios.get(
-					config.googleBaseUrl +
-						'&types=restaurant&location=45.519728,-73.5882657&rankby=distance'
+					config.googleNearBySearchUrl +
+						'&types=restaurant&location=' + config.company.location + '&rankby=distance'
 				)
 			).data.results;
 			const jsonAsArray = Object.keys(json).slice(0,3).map(function (key) {
@@ -103,11 +103,10 @@ export class Restaurant {
 		}[] = [];
 
 		try {
-			//TODO sort all restaurant in 3 km not only the first 20 items
 			const first = (
 				await axios.get(
-					config.googleBaseUrl +
-						'&types=restaurant&location=45.519728,-73.5882657&radius=3000'
+					config.googleNearBySearchUrl +
+						'&types=restaurant&location=' + config.company.location + '&radius=3000'
 				)
 			).data;
 			var token = first.next_page_token;
@@ -115,7 +114,7 @@ export class Restaurant {
 
 			while (first.results.length >= 20) {
 				const response = (
-					await axios.get(config.googleBaseUrl + '&pagetoken=' + token)
+					await axios.get(config.googleNearBySearchUrl + '&pagetoken=' + token)
 				).data;
 				token = response.next_page_token;
 				list = list.concat(response.results);
