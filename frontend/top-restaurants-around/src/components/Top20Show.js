@@ -20,9 +20,7 @@ export default function Top20Show() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 	const list = data.restaurants.slice(0, 3).map((r) => {
-		const imageUrl =
-			'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
-			r.photoreference;
+		const imageUrl = r.photoreference;
 
 		return (
 			<div id='top20_card'>

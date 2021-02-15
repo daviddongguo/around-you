@@ -44,6 +44,24 @@ export class Restaurant {
 				});
 			});
 
+			//Set photo url by google/place/photo
+			for (var i = 0; i < restaurants.length; i++) {
+				const imageUrl =
+					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
+					restaurants[i].photoreference;
+
+				logger.info(imageUrl);
+				try {
+					const res = await axios.get(imageUrl);
+					logger.info(res.request._redirectable._options.href);
+					restaurants[i].photoreference =
+						res.request._redirectable._options.href;
+				} catch (error) {
+					logger.error(error.Message);
+				}
+			}
+
+			// Set phonenumber and description by google / place / detail
 			for (var i = 0; i < restaurants.length; i++) {
 				const result = await axios.get(
 					config.googlePlaceDetailsUrl +
@@ -52,6 +70,7 @@ export class Restaurant {
 				);
 				restaurants[i].phonenumber = result.data.result.formatted_phone_number;
 
+				// Set description
 				if (result.data.result.reviews) {
 					const reviews = result.data.result.reviews;
 					const reviewsArray = Object.keys(reviews).map(function (key) {
@@ -65,7 +84,6 @@ export class Restaurant {
 							reviewsArray[j].text
 						) {
 							restaurants[i].description = reviewsArray[j].text.substr(0, 200);
-							logger.info(i + ' : ' + restaurants[i].description);
 							break;
 						}
 					}
@@ -108,8 +126,6 @@ export class Restaurant {
 				}
 			}
 
-			logger.info(list.length);
-
 			const jsonAsArray = Object.keys(list)
 				.map(function (key) {
 					return list[key];
@@ -132,6 +148,23 @@ export class Restaurant {
 					rating: item.rating,
 				});
 			});
+
+			//Set photo url by google/place/photo
+			for (var i = 0; i < restaurants.length; i++) {
+				const imageUrl =
+					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
+					restaurants[i].photoreference;
+
+				logger.info(imageUrl);
+				try {
+					const res = await axios.get(imageUrl);
+					logger.info(res.request._redirectable._options.href);
+					restaurants[i].photoreference =
+						res.request._redirectable._options.href;
+				} catch (error) {
+					logger.error(error.Message);
+				}
+			}
 
 			return restaurants;
 		} catch (error) {
