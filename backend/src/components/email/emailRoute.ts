@@ -1,5 +1,6 @@
 import express, {Request, Response} from 'express';
 import {body} from 'express-validator';
+import config from '../../../config/index';
 import {logger} from '../../common/loaders/logger';
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router.post('/api/emailsender',
 ],
 async(req: Request, res: Response) => {
   const {name, email, subject, message} = req.body;
+  const toEmail = config.company.email;
 
 	// send email
 	const mailjet = require('node-mailjet').connect(
@@ -33,7 +35,8 @@ async(req: Request, res: Response) => {
 				},
 				To: [
 					{
-						Email: "david.dong.guo@gmail.com",
+						// Email: "david.dong.guo@gmail.com",
+					  Email: toEmail,
 						Name: name,
 					},
 				],
@@ -44,8 +47,8 @@ async(req: Request, res: Response) => {
 	});
 	request
 		.then(function (result: {body: any}) {
+      logger.info('Sent email to ' +  toEmail);
 			logger.info(result.body);
-			// email sent
 			return res.status(200).send(result.body);
 		})
 		.catch(function (err: {statusCode: any}) {

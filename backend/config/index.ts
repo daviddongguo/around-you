@@ -23,6 +23,8 @@ export default {
   company:{
     name: process.env.COMPANY_NAME,
     url: process.env.COMPANY_URL,
+    email: process.env.COMPANY_EMAIL,
+    location: process.env.COMPANY_LOCATION,
     slogans: [process.env.COMPANY_SLOGAN_1, process.env.COMPANY_SLOGAN_2]
   }
 }
