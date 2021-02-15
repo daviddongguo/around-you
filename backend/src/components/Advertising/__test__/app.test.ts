@@ -1,0 +1,17 @@
+import request from 'supertest';
+import {app} from '../../../app';
+import {logger} from '../../../common/loaders/logger';
+
+// it('Returns 404 statusCode to /no-existed-router', async ()=>{
+//   const response = await request(app).post('/api/users/no-existed-router').send({});
+
+//   expect(response.status).toEqual(404);
+// });
+
+it('Returns 200 statusCode and a message to /api/status', async ()=>{
+  const response = await request(app).get('/api/status');
+  expect(response.status).toEqual(200);
+  logger.info(response.body);
+  expect(response.body).not.toBeNull();
+  expect(response.body.message).toContain('Hi, there!');
+});

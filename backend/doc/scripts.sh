@@ -8,6 +8,9 @@ npm install compression @types/compression
 npm install cors @types/cors
 npm install axios @types/axios
 npm install node-mailjet
+npm install supertest @types/supertest
+npm install express-async-errors
+npm install jest
 
 tsc --init
 
