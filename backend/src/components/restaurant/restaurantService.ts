@@ -20,7 +20,7 @@ export class Restaurant {
 						'&types=restaurant&location=45.519728,-73.5882657&rankby=distance'
 				)
 			).data.results;
-			const jsonAsArray = Object.keys(json).map(function (key) {
+			const jsonAsArray = Object.keys(json).slice(0,3).map(function (key) {
 				return json[key];
 			});
 
@@ -50,10 +50,8 @@ export class Restaurant {
 					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
-				logger.info(imageUrl);
 				try {
 					const res = await axios.get(imageUrl);
-					logger.info(res.request._redirectable._options.href);
 					restaurants[i].photoreference =
 						res.request._redirectable._options.href;
 				} catch (error) {
@@ -155,10 +153,8 @@ export class Restaurant {
 					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
-				logger.info(imageUrl);
 				try {
 					const res = await axios.get(imageUrl);
-					logger.info(res.request._redirectable._options.href);
 					restaurants[i].photoreference =
 						res.request._redirectable._options.href;
 				} catch (error) {
