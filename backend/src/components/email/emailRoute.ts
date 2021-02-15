@@ -20,9 +20,9 @@ router.post(
 ],
 async(req: Request, res: Response) => {
   const {name, email, subject, message} = req.body;
-  const emailSubject = `subject from ${name}<${email}>`;
-  const toEmail = config.company.email;
+  const emailSubject = `${subject} from ${name}<${email}>`;
   const toName = config.company.name;
+  const toEmail = req.body.toEmail || config.company.email;
 
 	// send email
 	const mailjet = require('node-mailjet').connect(
@@ -38,12 +38,10 @@ async(req: Request, res: Response) => {
 				},
 				To: [
 					{
-						Email: "david.dong.guo@gmail.com",
-					  // Email: toEmail,
+					  Email: toEmail,
 						Name: toName,
 					},
 				],
-				// Subject: subject + " from " + name + '<' + email + '>',
 				Subject: emailSubject,
 				TextPart: message,
 			},
