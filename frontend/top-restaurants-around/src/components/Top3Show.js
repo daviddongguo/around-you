@@ -1,9 +1,10 @@
 import useAxios from 'axios-hooks';
 import {Card, CardImg, CardImgOverlay, CardText, Col, Row} from 'reactstrap';
+import config from '../config/index';
 
 export default function Top3Show() {
 	const [{data, loading, error}] = useAxios(
-		'http://localhost:3003/api/restaurants/top3'
+		config.server + '/api/restaurants/top3'
 	);
 
 	if (loading) return <p>Loading...</p>;

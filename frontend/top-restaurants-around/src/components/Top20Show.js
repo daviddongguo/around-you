@@ -11,10 +11,11 @@ import {
 	Container,
 	Row,
 } from 'reactstrap';
+import config from '../config/index';
 
 export default function Top20Show() {
 	const [{data, loading, error}] = useAxios(
-		'http://localhost:3003/api/restaurants/top20bydistance'
+		config.server + '/api/restaurants/top20bydistance'
 	);
 
 	if (loading) return <p>Loading...</p>;

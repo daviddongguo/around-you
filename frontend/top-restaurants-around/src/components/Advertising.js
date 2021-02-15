@@ -1,9 +1,10 @@
 import useAxios from 'axios-hooks';
 import {Button, Card, CardText, Col, Row} from 'reactstrap';
+import config from '../config/index';
 
 export default function Advertising() {
 	const [{data, loading, error}] = useAxios(
-		'http://localhost:3003/api/advertisings'
+		config.server + '/api/advertisings'
 	);
 
 	if (loading) return <p>Loading...</p>;

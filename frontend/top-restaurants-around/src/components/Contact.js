@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {Button, Col, Form, FormGroup, Input, Row} from 'reactstrap';
+import config from '../config/index';
 
 const Contact = () => {
 	const [name, setName] = useState('Name');
@@ -10,7 +11,7 @@ const Contact = () => {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
-		await axios.post('http://localhost:3003/api/emailsender', {
+		await axios.post(config.server + '/api/emailsender', {
 			name,
 			email,
 			subject,

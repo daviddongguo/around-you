@@ -1,11 +1,20 @@
+import useAxios from 'axios-hooks';
 import React from 'react';
 import {Card, CardImg, CardImgOverlay, CardText} from 'reactstrap';
+import config from '../config/index';
 import banner_bg_img from '../images/Header.png';
 import place_icon from '../images/place_white.ico';
 
 export default function Banner() {
+	const [{data, loading, error}] = useAxios(
+		config.server + '/api/advertisings'
+	);
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error!</p>;
+
 	const title = 'Welcome to Montreal';
-	const sub_title = "Restaurants around Guarana's Office";
+	const sub_title = `Restaurants around ${data.company.name}'s Office`;
 	const icon = (
 		<div>
 			<img
