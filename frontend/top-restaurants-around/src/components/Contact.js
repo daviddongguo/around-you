@@ -63,10 +63,18 @@ const Contact = () => {
 				</Col>
 			</FormGroup>
 			<FormGroup row>
-				<Col sm={8}></Col>
+				<Col sm={8}>
+					<div
+						class='g-recaptcha'
+						data-sitekey='6LcGlFgaAAAAAM4o8Hcf5zasECmqCjHG_D9OVdn1'
+					></div>
+				</Col>
 				<Col sm={4}>
 					<div class='d-grid gap-2'>
-						<Button className='btn btn-danger btn-sm'> Send </Button>
+						<Button className='btn btn-danger btn-sm' size='lg'>
+							{' '}
+							Send{' '}
+						</Button>
 					</div>
 				</Col>
 			</FormGroup>
