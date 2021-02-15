@@ -19,4 +19,10 @@ export default {
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
   },
+
+  company:{
+    name: process.env.COMPANY_NAME,
+    url: process.env.COMPANY_URL,
+    slogans: [process.env.COMPANY_SLOGAN_1, process.env.COMPANY_SLOGAN_2]
+  }
 }
