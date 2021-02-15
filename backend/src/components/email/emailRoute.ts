@@ -21,6 +21,7 @@ router.post(
 async(req: Request, res: Response) => {
   const {name, email, subject, message} = req.body;
   const toEmail = config.company.email;
+  const toName = config.company.name;
 
 	// send email
 	const mailjet = require('node-mailjet').connect(
@@ -38,7 +39,7 @@ async(req: Request, res: Response) => {
 					{
 						// Email: "david.dong.guo@gmail.com",
 					  Email: toEmail,
-						Name: name,
+						Name: toName,
 					},
 				],
 				Subject: subject + " from " + email,
@@ -48,7 +49,7 @@ async(req: Request, res: Response) => {
 	});
 	request
 		.then(function (result: {body: any}) {
-      logger.info('Sent email to ' +  toEmail);
+      logger.info('Sent email to ' + toName + ' ' + toEmail);
 			logger.info(result.body);
 			return res.status(200).send(result.body);
 		})
@@ -56,16 +57,7 @@ async(req: Request, res: Response) => {
 			logger.error(err.statusCode);
 			return res.status(500).send('Oops..');
 		});
-		request
-			.then(function (result: {body: any}) {
-				logger.info(result.body);
-				// email sent
-				return res.status(200).send(result.body);
-			})
-			.catch(function (err: {statusCode: any}) {
-				logger.error(err.statusCode);
-				return res.status(500).send('Oops..');
-			});
+
 	}
 );
 
