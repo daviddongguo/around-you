@@ -49,7 +49,7 @@ async(req: Request, res: Response) => {
 	});
 	request
 		.then(function (result: {body: any}) {
-      // logger.info('Sent email to ' + toName + ' ' + toEmail);
+      logger.info('Sent email to ' + toName + ' ' + toEmail);
       // logger.info('Subject:' + emailSubject);
 			// logger.info(result.body);
 			return res.status(200).send(result.body);
