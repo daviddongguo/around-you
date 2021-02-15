@@ -1,9 +1,22 @@
+# Top restaurants around Guarana
 
-Backend:
+## Deploy on local machine
 
-<http://localhost:3003/api/restaurants/top20bydistance>
+deploy.sh
+cd backend
+npm install
+npm run start
+cd ..
+
+cd frontend/top-restaurants-around
+npm install
+npm run start
+
+## Website
+
+<http://localhost:3000/>
+
+## Backend
+
 <http://localhost:3003/api/restaurants/top3>
-
-Frontend:
-
-Not finished
+<http://localhost:3003/api/restaurants/top20bydistance>
