@@ -20,6 +20,7 @@ router.post(
 ],
 async(req: Request, res: Response) => {
   const {name, email, subject, message} = req.body;
+  const emailSubject = `subject from ${name}<${email}>`;
   const toEmail = config.company.email;
   const toName = config.company.name;
 
@@ -37,12 +38,13 @@ async(req: Request, res: Response) => {
 				},
 				To: [
 					{
-						// Email: "david.dong.guo@gmail.com",
-					  Email: toEmail,
+						Email: "david.dong.guo@gmail.com",
+					  // Email: toEmail,
 						Name: toName,
 					},
 				],
-				Subject: subject + " from " + email,
+				// Subject: subject + " from " + name + '<' + email + '>',
+				Subject: emailSubject,
 				TextPart: message,
 			},
 		],
@@ -50,6 +52,7 @@ async(req: Request, res: Response) => {
 	request
 		.then(function (result: {body: any}) {
       logger.info('Sent email to ' + toName + ' ' + toEmail);
+      logger.info('Subject:' + emailSubject);
 			logger.info(result.body);
 			return res.status(200).send(result.body);
 		})
