@@ -11,6 +11,7 @@ npm install node-mailjet
 npm install supertest @types/supertest
 npm install express-async-errors
 npm install jest
+npm install mailslurp-clients
 
 tsc --init
 
