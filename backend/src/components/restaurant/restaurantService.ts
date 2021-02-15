@@ -16,7 +16,7 @@ export class Restaurant {
 			}[] = [];
 			const json = (
 				await axios.get(
-					config.googleNearBySearchUrl +
+					config.google.nearBySearchUrl +
 						'&types=restaurant&location=' + config.company.location + '&rankby=distance'
 				)
 			).data.results;
@@ -47,7 +47,7 @@ export class Restaurant {
 			//Set photo url by google/place/photo
 			for (var i = 0; i < restaurants.length; i++) {
 				const imageUrl =
-					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
+        config.google.photoUrl +'&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
 				try {
@@ -62,7 +62,7 @@ export class Restaurant {
 			// Set phonenumber and description by google / place / detail
 			for (var i = 0; i < restaurants.length; i++) {
 				const result = await axios.get(
-					config.googlePlaceDetailsUrl +
+					config.google.placeDetailsUrl +
 						'&fields=name,rating,formatted_phone_number,reviews&place_id=' +
 						restaurants[i].place_id
 				);
@@ -105,7 +105,7 @@ export class Restaurant {
 		try {
 			const first = (
 				await axios.get(
-					config.googleNearBySearchUrl +
+					config.google.nearBySearchUrl +
 						'&types=restaurant&location=' + config.company.location + '&radius=3000'
 				)
 			).data;
@@ -114,7 +114,7 @@ export class Restaurant {
 
 			while (first.results.length >= 20) {
 				const response = (
-					await axios.get(config.googleNearBySearchUrl + '&pagetoken=' + token)
+					await axios.get(config.google.nearBySearchUrl + '&pagetoken=' + token)
 				).data;
 				token = response.next_page_token;
 				list = list.concat(response.results);
@@ -148,8 +148,8 @@ export class Restaurant {
 
 			//Set photo url by google/place/photo
 			for (var i = 0; i < restaurants.length; i++) {
-				const imageUrl =
-					'https://maps.googleapis.com/maps/api/place/photo?key=AIzaSyB2pcmC0RETrG_mCDbSlf58Zz6AWdtsvW0&maxwidth=400&photoreference=' +
+				const imageUrl = config.google.photoUrl +
+					'&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
 				try {

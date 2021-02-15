@@ -11,10 +11,12 @@ if (envFound.error) {
 export default {
   port: process.env.PORT || 3001,
 
-  googleKey: process.env.GOOGLE_KEY,
-  googleNearBySearchUrl: process.env.NEAR_BY_SEARCH,
-  googlePhotoUrl: process.env.PHOTO_URL,
-  googlePlaceDetailsUrl: process.env.PLACE_DETAIL_URL,
+  google: {
+    key: process.env.GOOGLE_KEY,
+    nearBySearchUrl: process.env.NEAR_BY_SEARCH_URL,
+    placeDetailsUrl: process.env.PLACE_DETAIL_URL,
+    photoUrl: process.env.PHOTO_URL,
+  },
 
   logs: {
     level: process.env.LOG_LEVEL || 'silly',
