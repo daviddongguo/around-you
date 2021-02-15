@@ -5,10 +5,11 @@ import {logger} from '../../common/loaders/logger';
 
 const router = express.Router();
 
-router.post('/api/emailsender',
-[
-  body('email').trim().isEmail().withMessage('Email must be valid.'),
-  body('subject')
+router.post(
+	'/api/emailsender',
+	[
+		body('email').trim().isEmail().withMessage('Email must be valid.'),
+		body('subject')
 			.trim()
 			.isLength({min: 1, max: 100})
 			.withMessage('subject must be between 3 and 100 characters'),
@@ -55,7 +56,17 @@ async(req: Request, res: Response) => {
 			logger.error(err.statusCode);
 			return res.status(500).send('Oops..');
 		});
-});
+		request
+			.then(function (result: {body: any}) {
+				logger.info(result.body);
+				// email sent
+				return res.status(200).send(result.body);
+			})
+			.catch(function (err: {statusCode: any}) {
+				logger.error(err.statusCode);
+				return res.status(500).send('Oops..');
+			});
+	}
+);
 
 export {router as indexOfEmailsender};
-
