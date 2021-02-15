@@ -8,7 +8,6 @@
 	},
 	"scripts": {
 		"start": "ts-node-dev ./src/index.ts",
-		"email": "ts-node-dev ./src/components/email/mailjet.ts",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
