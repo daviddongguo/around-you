@@ -32,14 +32,28 @@ export default function Top20Show() {
 							</Col>
 							<Col sm={8}>
 								<CardBody>
-									<Button>
-										<CardTitle tag='h5'>{r.name}</CardTitle>
-									</Button>
+									<Row>
+										<Col sm={8}>
+											<Button color='danger'>
+												<CardTitle tag='h5'>{r.name}</CardTitle>
+											</Button>
+										</Col>
+										<Col></Col>
+									</Row>
 									<CardText>
-										<p>Description: {r.description}</p>
-										<p>Rating: {r.rating}</p>
-										<p>Address: {r.address}</p>
-										<p>Phone Number: {r.phonenumber}</p>
+										<p>
+											<b>Description:</b> {r.description}
+										</p>
+										<p>
+											<b>Rating:</b> {r.rating}
+										</p>
+										<p>
+											<b>Address: </b>
+											{r.address}
+										</p>
+										<p>
+											<b>Phone Number:</b> {r.phonenumber || '---'}
+										</p>
 									</CardText>
 								</CardBody>
 							</Col>

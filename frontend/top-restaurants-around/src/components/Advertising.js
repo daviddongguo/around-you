@@ -1,5 +1,5 @@
 import useAxios from 'axios-hooks';
-import {Button, Card, CardText, CardTitle, Col, Row} from 'reactstrap';
+import {Button, Card, CardText, Col, Row} from 'reactstrap';
 
 export default function Advertising() {
 	const [{data, loading, error}] = useAxios(
@@ -9,22 +9,48 @@ export default function Advertising() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 
-	// const body = <div id='advertising_body'>{data.body}</div>;
-	const body = (
-		<Card body>
-			<CardTitle tag='h5'></CardTitle>
-			<CardText>{data.body}</CardText>
-			<Button>
-				<a href={data.website.url}>{data.website.text}</a>
-			</Button>
-		</Card>
+	const list = data.company.slogans.map((p) => {
+		return <p>{p}</p>;
+	});
+
+	const title = (
+		<div class='title'>
+			<h2>{''}</h2>
+		</div>
 	);
 
+	const body = (
+		<Card body className='text-center'>
+			<CardText>{list}</CardText>
+		</Card>
+	);
+	const button = (
+		<div>
+			<Row>
+				<Col></Col>
+				<Col sm={3}>
+					<Button color='danger'>
+						<div>
+							<a id='advertising_website_link' href={data.company.url}>
+								Website of {data.company.name}
+							</a>
+						</div>
+					</Button>
+				</Col>
+				<Col></Col>
+			</Row>
+		</div>
+	);
 	return (
 		<div id='advertising'>
 			<Row>
 				<Col></Col>
-				<Col sm={10}>{body}</Col>
+				<Col sm={10}>
+					<Row>{title}</Row>
+					<Row>{body}</Row>
+					<Row>{button}</Row>
+					<Row>{title}</Row>
+				</Col>
 				<Col></Col>
 			</Row>
 		</div>

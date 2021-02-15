@@ -1,27 +1,39 @@
-import React, {Component} from 'react';
-import {Card, CardImg, CardImgOverlay, CardText, CardTitle} from 'reactstrap';
+import React from 'react';
+import {Card, CardImg, CardImgOverlay, CardText} from 'reactstrap';
 import banner_bg_img from '../images/Header.png';
 import place_icon from '../images/place_white.ico';
 
-class Banner extends Component {
-	render() {
-		return (
-			<div>
-				<Card inverse className='text-center'>
-					<CardImg width='100%' src={banner_bg_img} />
-					<CardImgOverlay>
-						<CardTitle tag='h1'>Welcome to Montreal</CardTitle>
-						<CardText tag='h4'>Restaurants around Guarana's Office</CardText>
-						<CardText>
-							<small>
-								<img id='banner_icon_img' src={place_icon} alt='place_icon' />
-							</small>
-						</CardText>
-					</CardImgOverlay>
-				</Card>
-			</div>
-		);
-	}
-}
+export default function Banner() {
+	const title = 'Welcome to Montreal';
+	const sub_title = "Restaurants around Guarana's Office";
+	const icon = (
+		<div>
+			<img
+				class='img-fluid'
+				id='banner_icon_img'
+				src={place_icon}
+				alt='place_icon'
+			/>
+		</div>
+	);
 
-export default Banner;
+	return (
+		<div class='position-relative'>
+			<Card inverse className='text-center'>
+				<CardImg width='100%' src={banner_bg_img} alt='' />
+				<CardImgOverlay>
+					<CardText>
+						<div
+							id='banner'
+							class='position-absolute top-50 start-50 translate-middle'
+						>
+							<div id='banner_title'>{title}</div>
+							<div id='banner_sub_title'>{sub_title}</div>
+							<div>{icon}</div>
+						</div>
+					</CardText>
+				</CardImgOverlay>
+			</Card>
+		</div>
+	);
+}

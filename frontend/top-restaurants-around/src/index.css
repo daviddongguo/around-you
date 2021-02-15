@@ -1,3 +1,11 @@
+.body{
+  font-family: "SF-Pro-Display", sans-serif;
+}
+
+a, u {
+  text-decoration: none;
+}
+
 .title{
   margin-top: 3rem;
   text-align: center;
@@ -5,60 +13,34 @@
 
 /* Banner Stylings */
 #banner {
-  position: relative;
-  text-align: center;
   max-width: 100%;
 }
-#banner_bg {
-  opacity: 1;
-  max-width: 100%;
-}
-#banner_name {
-  position: absolute;
-  text-align: center;
-  top: 45%;
-  /* left: 20%; */
-  transform: translate(-50%, -90%);
-  max-width: 100%;
-  font-size: 32px;
-  /* font-size: 5vw; */
-  font-family: "Arial", cursive, sans-serif;
+#banner_title {
+  font-size: 3vw;
+  font-weight: bold;
   color: white;
 }
-#banner_slogan {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -30%);
-  max-width: 100%;
-  font-size: 3.5vw;
-  width: 80%;
-  color: rgb(240, 238, 227);
-}
-#banner_icon {
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -20%);
+#banner_sub_title{
+  font-size: 2vw;
+  color: white;
 }
 #banner_icon_img {
-  max-width: 50px;
+  max-width: 2rem;
 }
 
 /* Top3 */
 #top3{
-  background-color:rgb(185, 182, 180);
+  background-color:rgb(247, 247, 247);
 }
-/* #top3_image{
-  width: 240px;
-  height: 160px;
-} */
 
+#advertising_website_link{
+  color: white;
+}
 
 /* Contact style */
 #contact {
   text-align: center;
-  background-color:rgb(26, 25, 24);
+  background-color:rgb(41, 41, 50);
   height: 24rem;
 }
 #contact_title {
