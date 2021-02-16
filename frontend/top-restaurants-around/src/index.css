@@ -35,6 +35,16 @@ a, u {
 #top3{
   background-color:rgb(247, 247, 247);
 }
+.top3_img{
+  width: 100%;
+  height: 162px;
+}
+
+.top20_img{
+  width: 280px;
+  height: 100%;
+}
+
 
 #advertising_website_link{
   color: white;

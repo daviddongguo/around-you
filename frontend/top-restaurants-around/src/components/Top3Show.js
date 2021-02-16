@@ -17,7 +17,7 @@ export default function Top3Show() {
 			<Col sm={4}>
 				<div class='position-relative'>
 					<Card inverse>
-						<CardImg bottom width='100%' src={imageUrl} alt='' />
+						<CardImg className='top3_img' width='100%' src={imageUrl} alt='' />
 						<CardImgOverlay>
 							<CardText>
 								<div class='position-absolute bottom-0 start-0'>

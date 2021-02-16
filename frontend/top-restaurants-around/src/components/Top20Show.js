@@ -29,7 +29,11 @@ export default function Top20Show() {
 					<Container>
 						<Row>
 							<Col sm={4}>
-								<CardImg top width='100%' src={imageUrl} alt='Card image cap' />
+								<CardImg
+									className='top3_img'
+									src={imageUrl}
+									alt='Card image cap'
+								/>
 							</Col>
 							<Col sm={8}>
 								<CardBody>
