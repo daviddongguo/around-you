@@ -1,6 +1,9 @@
 .body{
   font-family: "SF-Pro-Display", sans-serif;
 }
+.card{
+  border: 0px !important;
+}
 
 a, u {
   text-decoration: none;
