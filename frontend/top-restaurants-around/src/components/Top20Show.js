@@ -28,17 +28,17 @@ export default function Top20Show() {
 				<Card>
 					<Container>
 						<Row>
-							<Col sm={4}>
+							<Col sm={12} md={4}>
 								<CardImg
-									className='top3_img'
+									className='img-fluid top20_img'
 									src={imageUrl}
 									alt='Card image cap'
 								/>
 							</Col>
-							<Col sm={8}>
+							<Col sm={12} md={8}>
 								<CardBody>
 									<Row>
-										<Col sm={8}>
+										<Col sm={12} md={8}>
 											<Button color='danger'>
 												<CardTitle tag='h5'>{r.name}</CardTitle>
 											</Button>
@@ -77,10 +77,10 @@ export default function Top20Show() {
 	);
 
 	return (
-		<div id='top3show'>
+		<div id='top20show'>
 			<Row>
 				<Col></Col>
-				<Col sm={12}>
+				<Col sm={12} md={10}>
 					<Row>{title}</Row>
 					<Row>
 						<CardGroup> {list}</CardGroup>

@@ -1,4 +1,5 @@
 import useAxios from 'axios-hooks';
+import {StyleSheet} from 'react-native';
 import {Card, CardImg, CardImgOverlay, CardText, Col, Row} from 'reactstrap';
 import config from '../config/index';
 
@@ -10,14 +11,35 @@ export default function Top3Show() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 
+	const styles = StyleSheet.create({
+		stretch: {
+			width: 260,
+			height: 162,
+			resizeMode: 'center',
+		},
+	});
+
+	// const displayAnImageWithStyle = (url) => {
+	// 	return (
+	// 		<View style={styles.container}>
+	// 			<Image style={styles.stretch} source={url} />
+	// 		</View>
+	// 	);
+	// };
+
 	const list = data.restaurants.slice(0, 3).map((r) => {
 		const imageUrl = r.photoreference;
 
 		return (
-			<Col sm={4}>
+			<Col sm='12' md='4'>
 				<div class='position-relative'>
 					<Card inverse>
-						<CardImg className='top3_img' width='100%' src={imageUrl} alt='' />
+						<CardImg
+							className='img-fluid top3_img'
+							width='100%'
+							src={imageUrl}
+							alt=''
+						></CardImg>
 						<CardImgOverlay>
 							<CardText>
 								<div class='position-absolute bottom-0 start-0'>

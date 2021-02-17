@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import {Button, Col, Form, FormGroup, Input, Row} from 'reactstrap';
+import {Button, Col, Form, Input, Row} from 'reactstrap';
 import config from '../config/index';
 
 const Contact = () => {
@@ -26,15 +26,15 @@ const Contact = () => {
 
 	const contactForm = (
 		<Form onSubmit={onSubmit}>
-			<FormGroup row>
-				<Col sm={4}>
+			<Row>
+				<Col sm='12' md={4}>
 					<Input
 						value={name}
 						onChange={(e) => setName(e.target.value)}
 						className='form-control'
 					></Input>
 				</Col>
-				<Col sm={8}>
+				<Col sm='12' md={8}>
 					<Input
 						type='email'
 						value={email}
@@ -42,18 +42,18 @@ const Contact = () => {
 						className='form-control'
 					></Input>
 				</Col>
-			</FormGroup>
-			<FormGroup row>
-				<Col sm={12}>
+			</Row>
+			<Row>
+				<Col sm='12' md={12}>
 					<Input
 						value={subject}
 						onChange={(e) => setSubject(e.target.value)}
 						className='form-control'
 					></Input>
 				</Col>
-			</FormGroup>
-			<FormGroup row>
-				<Col sm={12}>
+			</Row>
+			<Row>
+				<Col sm='12' md={12}>
 					<Input
 						type='textarea'
 						rows={5}
@@ -62,15 +62,15 @@ const Contact = () => {
 						className='form-control'
 					></Input>
 				</Col>
-			</FormGroup>
-			<FormGroup row>
-				<Col sm={8}>
+			</Row>
+			<Row>
+				<Col sm='12' md={8}>
 					<div
 						class='g-recaptcha'
 						data-sitekey='6LcGlFgaAAAAAM4o8Hcf5zasECmqCjHG_D9OVdn1'
 					></div>
 				</Col>
-				<Col sm={4}>
+				<Col sm='12' md={4}>
 					<div class='d-grid gap-2'>
 						<Button className='btn btn-danger btn-sm' size='lg'>
 							{' '}
@@ -78,7 +78,7 @@ const Contact = () => {
 						</Button>
 					</div>
 				</Col>
-			</FormGroup>
+			</Row>
 		</Form>
 	);
 
@@ -86,7 +86,7 @@ const Contact = () => {
 		<div id='contact'>
 			<Row class='row justify-content-sm-center'>
 				<Col></Col>
-				<Col sm={10}>
+				<Col sm='12' md={10}>
 					<Row>{title}</Row>
 					<Row>{contactForm}</Row>
 				</Col>
