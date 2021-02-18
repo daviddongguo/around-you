@@ -5,7 +5,6 @@ import {
 	CardBody,
 	CardGroup,
 	CardImg,
-	CardText,
 	CardTitle,
 	Col,
 	Container,
@@ -20,8 +19,8 @@ export default function Top20Show() {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
-	const list = data.restaurants.slice(0, 3).map((r, i) => {
-		const imageUrl = r.photoreference;
+	const list = data.restaurants.slice(0, 3).map((restaurant, i) => {
+		const imageUrl = restaurant.photoreference;
 
 		return (
 			<div id='top20_card' key={i}>
@@ -40,26 +39,26 @@ export default function Top20Show() {
 									<Row>
 										<Col sm={12} md={8}>
 											<Button color='danger'>
-												<CardTitle tag='h5'>{r.name}</CardTitle>
+												<CardTitle tag='h5'>{restaurant.name}</CardTitle>
 											</Button>
 										</Col>
 										<Col></Col>
 									</Row>
-									<CardText>
+									<div class='card-text'>
 										<p>
-											<b>Description:</b> {r.description}
+											<b>Description:</b> {restaurant.description}
 										</p>
 										<p>
-											<b>Rating:</b> {r.rating}
+											<b>Rating:</b> {restaurant.rating}
 										</p>
 										<p>
 											<b>Address: </b>
-											{r.address}
+											{restaurant.address}
 										</p>
 										<p>
-											<b>Phone Number:</b> {r.phonenumber || '---'}
+											<b>Phone Number:</b> {restaurant.phonenumber || '---'}
 										</p>
-									</CardText>
+									</div>
 								</CardBody>
 							</Col>
 						</Row>

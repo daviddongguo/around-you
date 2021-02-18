@@ -1,5 +1,5 @@
 import useAxios from 'axios-hooks';
-import {Button, Card, CardText, Col, Row} from 'reactstrap';
+import {Button, Card, Col, Row} from 'reactstrap';
 import config from '../config/index';
 
 export default function Advertising() {
@@ -22,7 +22,7 @@ export default function Advertising() {
 
 	const body = (
 		<Card body className='text-center'>
-			<CardText>{list}</CardText>
+			<div class='card-text'>{list}</div>
 		</Card>
 	);
 	const button = (

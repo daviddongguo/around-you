@@ -1,6 +1,6 @@
 import useAxios from 'axios-hooks';
 import React from 'react';
-import {Card, CardImg, CardImgOverlay, CardText} from 'reactstrap';
+import {Card, CardImg, CardImgOverlay} from 'reactstrap';
 import config from '../config/index';
 import banner_bg_img from '../images/Header.png';
 import place_icon from '../images/place_white.ico';
@@ -31,7 +31,7 @@ export default function Banner() {
 			<Card inverse className='text-center'>
 				<CardImg width='100%' src={banner_bg_img} alt='' />
 				<CardImgOverlay>
-					<CardText>
+					<div class='card-text'>
 						<div
 							id='banner'
 							class='position-absolute top-50 start-50 translate-middle'
@@ -40,7 +40,7 @@ export default function Banner() {
 							<div id='banner_sub_title'>{sub_title}</div>
 							<div>{icon}</div>
 						</div>
-					</CardText>
+					</div>
 				</CardImgOverlay>
 			</Card>
 		</div>

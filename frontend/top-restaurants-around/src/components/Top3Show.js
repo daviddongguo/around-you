@@ -1,5 +1,5 @@
 import useAxios from 'axios-hooks';
-import {Card, CardImg, CardImgOverlay, CardText, Col, Row} from 'reactstrap';
+import {Card, CardImg, CardImgOverlay, Col, Row} from 'reactstrap';
 import config from '../config/index';
 
 export default function Top3Show() {
@@ -24,11 +24,11 @@ export default function Top3Show() {
 							alt=''
 						></CardImg>
 						<CardImgOverlay>
-							<CardText>
+							<div class='card-text'>
 								<div class='position-absolute bottom-0 start-0'>
 									<h6> {r.name}</h6>
 								</div>
-							</CardText>
+							</div>
 						</CardImgOverlay>
 					</Card>
 				</div>
