@@ -10,8 +10,8 @@ export default function Advertising() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 
-	const list = data.company.slogans.map((p) => {
-		return <p>{p}</p>;
+	const list = data.company.slogans.map((paragraph, i) => {
+		return <p key={i}>{paragraph}</p>;
 	});
 
 	const title = (

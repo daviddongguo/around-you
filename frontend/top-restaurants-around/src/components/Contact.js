@@ -84,7 +84,7 @@ const Contact = () => {
 
 	return (
 		<div id='contact'>
-			<Row class='row justify-content-sm-center'>
+			<Row className='row justify-content-sm-center'>
 				<Col></Col>
 				<Col sm='12' md={10}>
 					<Row>{title}</Row>

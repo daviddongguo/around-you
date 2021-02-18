@@ -10,11 +10,11 @@ export default function Top3Show() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 
-	const list = data.restaurants.slice(0, 3).map((r) => {
+	const list = data.restaurants.slice(0, 3).map((r, i) => {
 		const imageUrl = r.photoreference;
 
 		return (
-			<Col sm='12' md='4'>
+			<Col sm='12' md='4' key={i}>
 				<div class='position-relative'>
 					<Card inverse>
 						<CardImg

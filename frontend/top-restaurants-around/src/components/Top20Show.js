@@ -20,11 +20,11 @@ export default function Top20Show() {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
-	const list = data.restaurants.slice(0, 3).map((r) => {
+	const list = data.restaurants.slice(0, 3).map((r, i) => {
 		const imageUrl = r.photoreference;
 
 		return (
-			<div id='top20_card'>
+			<div id='top20_card' key={i}>
 				<Card>
 					<Container>
 						<Row>
