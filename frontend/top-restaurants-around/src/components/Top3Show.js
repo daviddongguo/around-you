@@ -10,7 +10,7 @@ export default function Top3Show() {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error!</p>;
 
-	const list = data.restaurants.slice(0, 3).map((r, i) => {
+	const list = data.restaurants.map((r, i) => {
 		const imageUrl = r.photoreference;
 
 		return (
