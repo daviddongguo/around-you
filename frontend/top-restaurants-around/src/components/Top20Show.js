@@ -2,7 +2,6 @@ import useAxios from 'axios-hooks';
 import {
 	Button,
 	Card,
-	CardBody,
 	CardGroup,
 	CardImg,
 	CardTitle,
@@ -35,7 +34,7 @@ export default function Top20Show() {
 								/>
 							</Col>
 							<Col sm={12} md={8}>
-								<CardBody>
+								<div className='top20-card-body'>
 									<Row>
 										<Col sm={12} md={8}>
 											<Button color='danger'>
@@ -59,7 +58,7 @@ export default function Top20Show() {
 											<b>Phone Number:</b> {restaurant.phonenumber || '---'}
 										</p>
 									</div>
-								</CardBody>
+								</div>
 							</Col>
 						</Row>
 					</Container>

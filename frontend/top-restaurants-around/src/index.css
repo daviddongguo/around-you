@@ -19,12 +19,12 @@ a, u {
   max-width: 100%;
 }
 #banner_title {
-  font-size: 3vw;
+  font-size: 3.5vw;
   font-weight: bold;
   color: white;
 }
 #banner_sub_title{
-  font-size: 2vw;
+  font-size: 2.5vw;
   color: white;
 }
 #banner_icon_img {
@@ -45,6 +45,10 @@ a, u {
   width: 280px;
   height: 207px;
   object-fit: cover;
+}
+
+.top20-card-body{
+  padding: none !important;
 }
 
 @media screen and (max-width: 768px) {
