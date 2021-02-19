@@ -8,6 +8,7 @@
 	},
 	"scripts": {
 		"start": "ts-node-dev ./src/index.ts",
+		"pm2": "SET NODE_ENV=production & pm2 start ./src/index.ts --watch",
 		"test": "jest --watchAll --no-cache --coverage --verbose=true"
 	},
 	"jest": {
