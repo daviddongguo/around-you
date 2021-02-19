@@ -81,7 +81,7 @@ export class Restaurant {
 							reviewsArray[j].rating >= 4 &&
 							reviewsArray[j].text
 						) {
-							restaurants[i].description = reviewsArray[j].text.substr(0, 200);
+							restaurants[i].description = reviewsArray[j].text.substr(0, 200) + '...';
 							break;
 						}
 					}
