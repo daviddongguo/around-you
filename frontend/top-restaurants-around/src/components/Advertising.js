@@ -26,10 +26,10 @@ export default function Advertising() {
 		</Card>
 	);
 	const button = (
-		<div>
+		<div class='text-center'>
 			<Row>
 				<Col></Col>
-				<Col sm={3}>
+				<Col sm={12}>
 					<Button color='danger'>
 						<div>
 							<a id='advertising_website_link' href={data.company.url}>
