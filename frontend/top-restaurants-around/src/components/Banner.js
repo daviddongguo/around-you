@@ -2,7 +2,7 @@ import useAxios from 'axios-hooks';
 import React from 'react';
 import {Card, CardImg, CardImgOverlay} from 'reactstrap';
 import config from '../config/index';
-import banner_bg_img from '../images/Header.png';
+import banner_bg_img from '../images/Header-1080.png';
 import place_icon from '../images/place_white.ico';
 
 export default function Banner() {
