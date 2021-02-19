@@ -30,6 +30,9 @@ a, u {
 #banner_icon_img {
   max-width: 2rem;
 }
+#advertising {
+  font-size: 0.75rem;
+}
 
 /* Top3 */
 #top3{
