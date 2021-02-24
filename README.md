@@ -1,4 +1,4 @@
-# Top restaurants around Guarana
+# Top restaurants around
 
 ## Live on <http://davidwu.online/aroundyou/>
 
