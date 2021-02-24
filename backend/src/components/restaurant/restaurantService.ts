@@ -14,6 +14,10 @@ export class Restaurant {
 				address: string;
 				phonenumber: string;
 			}[] = [];
+      const urlStr = config.google.nearBySearchUrl +
+      '&types=restaurant&location=' + config.company.location + '&rankby=distance';
+      logger.info(urlStr);
+
 			const json = (
 				await axios.get(
 					config.google.nearBySearchUrl +
