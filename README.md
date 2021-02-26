@@ -4,6 +4,6 @@
 
 ## Backend
 
-<http://davidwu.online/api/restaurants/top3>
+show the most rated 3 restaurants around a special geolocation <http://davidwu.online/api/restaurants/top3>
 
-<http://davidwu.online/api/restaurants/top20bydistance>
+populate the list of 20 restaurants around sorted by geolocation <http://davidwu.online/api/restaurants/top20bydistance>
