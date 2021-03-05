@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"start": "ts-node-dev ./src/index.ts",
-		"pm2": "pm2 start ./src/index.ts --watch",
+		"pm2": "pm2 start ./src/index.ts --watch --name topRestaurantsApi",
 		"test": "jest --watchAll --no-cache --coverage --verbose=true"
 	},
 	"jest": {

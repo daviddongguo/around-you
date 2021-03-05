@@ -14,19 +14,23 @@ export class Restaurant {
 				address: string;
 				phonenumber: string;
 			}[] = [];
-      const urlStr = config.google.nearBySearchUrl +
-      '&types=restaurant&location=' + config.company.location + '&rankby=distance';
-      logger.info(urlStr);
+			const urlStr =
+				config.google.nearBySearchUrl +
+				'&types=restaurant&location=' +
+				config.company.location +
+				'&rankby=distance';
+			logger.info(urlStr);
+			const response = await axios.get(urlStr);
+			if (response && response.data.error_message) {
+				throw new Error(response.data.error_message);
+			}
 
-			const json = (
-				await axios.get(
-					config.google.nearBySearchUrl +
-						'&types=restaurant&location=' + config.company.location + '&rankby=distance'
-				)
-			).data.results;
-			const jsonAsArray = Object.keys(json).slice(0,3).map(function (key) {
-				return json[key];
-			});
+			const json = response.data.results;
+			const jsonAsArray = Object.keys(json)
+				.slice(0, 3)
+				.map(function (key) {
+					return json[key];
+				});
 
 			jsonAsArray.forEach(async (item) => {
 				var phonenumber = '';
@@ -51,7 +55,8 @@ export class Restaurant {
 			//Set photo url by google/place/photo
 			for (var i = 0; i < restaurants.length; i++) {
 				const imageUrl =
-        config.google.photoUrl +'&maxwidth=400&photoreference=' +
+					config.google.photoUrl +
+					'&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
 				try {
@@ -85,7 +90,8 @@ export class Restaurant {
 							reviewsArray[j].rating >= 4 &&
 							reviewsArray[j].text
 						) {
-							restaurants[i].description = reviewsArray[j].text.substr(0, 200) + '...';
+							restaurants[i].description =
+								reviewsArray[j].text.substr(0, 200) + '...';
 							break;
 						}
 					}
@@ -110,7 +116,9 @@ export class Restaurant {
 			const first = (
 				await axios.get(
 					config.google.nearBySearchUrl +
-						'&types=restaurant&location=' + config.company.location + '&radius=3000'
+						'&types=restaurant&location=' +
+						config.company.location +
+						'&radius=3000'
 				)
 			).data;
 			var token = first.next_page_token;
@@ -152,7 +160,8 @@ export class Restaurant {
 
 			//Set photo url by google/place/photo
 			for (var i = 0; i < restaurants.length; i++) {
-				const imageUrl = config.google.photoUrl +
+				const imageUrl =
+					config.google.photoUrl +
 					'&maxwidth=400&photoreference=' +
 					restaurants[i].photoreference;
 
