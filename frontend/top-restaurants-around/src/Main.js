@@ -10,7 +10,7 @@ class Main extends Component {
 			<Container>
 				<Banner />
 				{/* <Advertising /> */}
-				<Top3Show />
+				<Top3Show top3url='/api/restaurants/top3' />
 				<Top20Show />
 				{/* <Contact /> */}
 			</Container>
