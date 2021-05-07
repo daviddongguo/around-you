@@ -19,13 +19,13 @@ const postCSSPlugins = [
   require('autoprefixer'),
 ]
 
-// class RunAfterCompile {
-//   apply(compiler) {
-//     compiler.hooks.done.tap('Copy images', function () {
-//       fse.copySync('./src/assets/images', './dist/assets/images')
-//     })
-//   }
-// }
+class RunAfterCompile {
+  apply(compiler) {
+    compiler.hooks.done.tap('Copy images', function () {
+      fse.copySync('./src/assets/images', './dist/assets/images')
+    })
+  }
+}
 
 let cssConfig = {
   test: /\.css$/i,
@@ -45,6 +45,17 @@ let imgConfig = {
   },
 }
 
+let jsConfig = {
+  test: /\.js$/,
+  exclude: /(node_modules)/,
+  use: {
+    loader: 'babel-loader',
+    options: {
+      presets: ['@babel/preset-react', '@babel/preset-env'],
+    },
+  },
+}
+
 let pages = fse
   .readdirSync('./src')
   .filter(function (file) {
@@ -61,20 +72,7 @@ let config = {
   entry: './src/assets/scripts/index.js',
   plugins: pages,
   module: {
-    rules: [
-      cssConfig,
-      imgConfig,
-      {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react', '@babel/preset-env'],
-          },
-        },
-      },
-    ],
+    rules: [cssConfig, imgConfig, jsConfig],
   },
 }
 
@@ -85,7 +83,7 @@ if (currentTask === 'dev') {
     path: path.resolve(__dirname, 'src'),
   }
   config.devServer = {
-    before: function (app, server) {
+    before: function (src, server) {
       server._watch('./src/**/*.html')
     },
     contentBase: path.join(__dirname, 'src'),
@@ -111,8 +109,8 @@ if (currentTask === 'build') {
   }
   config.plugins.push(
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'})
-    // new RunAfterCompile()
+    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'}),
+    new RunAfterCompile()
   )
 }
 
