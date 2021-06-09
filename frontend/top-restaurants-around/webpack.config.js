@@ -5,6 +5,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const fse = require('fs-extra')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+const webpack = require('webpack')
+
+const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const postCSSPlugins = [
   require('postcss-import'),
@@ -44,8 +48,24 @@ let imgConfig = {
     loader: 'url-loader',
   },
 }
-
 let jsConfig = {
+  test: /\.[jt]sx?$/,
+  exclude: /node_modules/,
+  use: [
+    {
+      loader: require.resolve('babel-loader'),
+      options: {
+        presets: ['@babel/preset-react', '@babel/preset-env'],
+        plugins: [
+          // ... other plugins
+          isDevelopment && require.resolve('react-refresh/babel'),
+        ].filter(Boolean),
+      },
+    },
+  ],
+}
+
+let orignaljsConfig = {
   test: /\.js$/,
   exclude: /(node_modules)/,
   use: {

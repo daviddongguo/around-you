@@ -1,15 +1,16 @@
-.body{
-  font-family: "SF-Pro-Display", sans-serif;
+.body {
+  font-family: 'SF-Pro-Display', sans-serif;
 }
-.card{
+.card {
   border: 0px !important;
 }
 
-a, u {
+a,
+u {
   text-decoration: none;
 }
 
-.title{
+.title {
   margin-top: 3rem;
   text-align: center;
 }
@@ -23,7 +24,7 @@ a, u {
   font-weight: bold;
   color: white;
 }
-#banner_sub_title{
+#banner_sub_title {
   font-size: 2.5vw;
   color: white;
 }
@@ -35,47 +36,46 @@ a, u {
 }
 
 /* Top3 */
-#top3{
-  background-color:rgb(247, 247, 247);
+#top3 {
+  background-color: rgb(247, 247, 247);
 }
-.top3_img{
+.top3_img {
   width: 260px;
   height: 162px;
   object-fit: cover;
 }
 
-.top20_img{
+.top20_img {
   width: 280px;
   height: 207px;
   object-fit: cover;
 }
 
-.top20-card-body{
+.top20-card-body {
   padding: none !important;
 }
 
 @media screen and (max-width: 768px) {
-  .top3_img{
+  .top3_img {
     width: 100%;
-    height:auto;
+    height: auto;
     max-height: 300px;
   }
 
-  .top20_img{
+  .top20_img {
     width: 100%;
     height: auto;
   }
 }
 
-
-#advertising_website_link{
+#advertising_website_link {
   color: white;
 }
 
 /* Contact style */
 #contact {
   text-align: center;
-  background-color:rgb(41, 41, 50);
+  background-color: rgb(41, 41, 50);
   height: 24rem;
 }
 #contact_title {
@@ -88,6 +88,6 @@ a, u {
   font-size: 32px;
   height: 3rem;
   /* font-size: 5vw; */
-  font-family: "Arial", cursive, sans-serif;
+  font-family: 'Arial', cursive, sans-serif;
   color: white;
 }

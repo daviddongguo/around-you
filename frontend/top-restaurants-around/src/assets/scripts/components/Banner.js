@@ -30,6 +30,7 @@ export default function Banner() {
         <CardImg width='100%' src={banner_bg_img} alt='' />
         <CardImgOverlay>
           <div class='card-text'>
+            <h1>test...</h1>
             <div
               id='banner'
               class='position-absolute top-50 start-50 translate-middle'
