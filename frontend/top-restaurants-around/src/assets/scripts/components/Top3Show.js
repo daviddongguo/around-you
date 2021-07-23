@@ -1,16 +1,18 @@
-import useAxios from 'axios-hooks'
-import React from 'react'
-import {Card, CardImg, CardImgOverlay, Col, Row} from 'reactstrap'
-import config from '../../../config/index'
+import useAxios from 'axios-hooks';
+import React from 'react';
+import {
+  Card, CardImg, CardImgOverlay, Col, Row,
+} from 'reactstrap';
+import config from '../../../config/index';
 
-export default function Top3Show({top3url}) {
-  const [{data, loading, error}] = useAxios(config.server + top3url)
+export default function Top3Show({ top3url }) {
+  const [{ data, loading, error }] = useAxios(config.server + top3url);
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!</p>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
 
   const list = data.restaurants.map((r, i) => {
-    const imageUrl = r.photoreference
+    const imageUrl = r.photoreference;
 
     return (
       <Col sm='12' md='4' key={i}>
@@ -32,16 +34,16 @@ export default function Top3Show({top3url}) {
           </Card>
         </div>
       </Col>
-    )
-  })
+    );
+  });
 
   const title = (
     <div class='title'>
       <h2>Top restaurants around</h2>
       <h5>Based on reviews</h5>
     </div>
-  )
-  const footer = <div class='title'>{''}</div>
+  );
+  const footer = <div class='title'>{''}</div>;
 
   return (
     <div id='top3'>
@@ -55,5 +57,5 @@ export default function Top3Show({top3url}) {
         <Col></Col>
       </Row>
     </div>
-  )
+  );
 }

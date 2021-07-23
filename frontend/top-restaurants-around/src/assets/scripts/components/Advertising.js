@@ -1,29 +1,31 @@
-import useAxios from 'axios-hooks'
-import React from 'react'
-import {Button, Card, Col, Row} from 'reactstrap'
-import config from '../../../config/index'
+import useAxios from 'axios-hooks';
+import React from 'react';
+import { Button, Card, Col, Row } from 'reactstrap';
+import config from '../../../config/index';
 
 export default function Advertising() {
-  const [{data, loading, error}] = useAxios(config.server + '/api/advertisings')
+  const [{ data, loading, error }] = useAxios(
+    `${config.server}/api/advertisings`,
+  );
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error!</p>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error!</p>;
 
-  const list = data.company.slogans.map((paragraph, i) => {
-    return <p key={i}>{paragraph}</p>
-  })
+  const list = data.company.slogans.map((paragraph, i) => (
+    <p key={i}>{paragraph}</p>
+  ));
 
   const title = (
     <div class='title'>
       <h2>{''}</h2>
     </div>
-  )
+  );
 
   const body = (
     <Card body className='text-center'>
       <div class='card-text'>{list}</div>
     </Card>
-  )
+  );
   const button = (
     <div class='text-center'>
       <Row>
@@ -40,7 +42,7 @@ export default function Advertising() {
         <Col></Col>
       </Row>
     </div>
-  )
+  );
   return (
     <div id='advertising'>
       <Row>
@@ -54,5 +56,5 @@ export default function Advertising() {
         <Col></Col>
       </Row>
     </div>
-  )
+  );
 }

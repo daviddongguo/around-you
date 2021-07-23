@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
-import {Container} from 'reactstrap'
-import Banner from './components/Banner'
-import Top20Show from './components/Top20Show'
-import Top3Show from './components/Top3Show'
+/* eslint-disable class-methods-use-this */
+import React, { Component } from 'react';
+import { Container } from 'reactstrap';
+import Banner from './components/Banner';
+import Top20Show from './components/Top20Show';
+import Top3Show from './components/Top3Show';
 
 class Main extends Component {
   render() {
@@ -15,8 +16,8 @@ class Main extends Component {
         <Top20Show />
         {/* <Contact /> */}
       </Container>
-    )
+    );
   }
 }
 
-export default Main
+export default Main;

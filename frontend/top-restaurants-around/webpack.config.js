@@ -1,137 +1,164 @@
-const currentTask = process.env.npm_lifecycle_event
-const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const fse = require('fs-extra')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 
-const postCSSPlugins = [
-  require('postcss-import'),
-  require('postcss-mixins'),
-  require('postcss-simple-vars'),
-  require('postcss-nested'),
-  // If in the future the creator of the postcss-hexrgba package
-  // releases an update (it is version 2.0.1 as I'm writing this)
-  // then it will likely work with PostCSS V8 so you can uncomment
-  // the line below and also install the package with npm.
-  //require('postcss-hexrgba'),
-  require('autoprefixer'),
-]
+let isDevelopment = process.env.NODE_ENV !== 'production';
+let isProduction = !isDevelopment;
 
-class RunAfterCompile {
-  apply(compiler) {
-    compiler.hooks.done.tap('Copy images', function () {
-      fse.copySync('./src/assets/images', './dist/assets/images')
-    })
-  }
-}
-
-let cssConfig = {
-  test: /\.css$/i,
-  use: [
-    'css-loader?url=false',
-    {
-      loader: 'postcss-loader',
-      options: { postcssOptions: { plugins: postCSSPlugins } },
-    },
-  ],
-}
-
-let imgConfig = {
-  test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.ico$/],
-  use: {
-    loader: 'url-loader',
-  },
-}
-let jsConfig = {
-  test: /\.(js|jsx)$/,
-  exclude: /node_modules/,
+const imageInHtmlLoader = {
+  test: /\.html$/,
+  // loader: 'html-loader', // use commonJs
   use: [
     {
-      loader: require.resolve('babel-loader'),
+      loader: 'html-loader',
       options: {
-        presets: ['@babel/preset-react', '@babel/preset-env'],
-        plugins: [
-          // ... other plugins
-          isDevelopment && require.resolve('react-refresh/babel'),
-        ].filter(Boolean),
+        esModule: false,
+        // sources: true,
       },
     },
   ],
-}
+};
 
-// let orignalJsConfig = {
-//   test: /\.js$/,
-//   exclude: /node_modules/,
-//   use: {
-//     loader: 'babel-loader',
-//     options: {
-//       presets: ['@babel/preset-react', '@babel/preset-env'],
-//     },
-//   },
-// }
-
-let pages = fse
-  .readdirSync('./src')
-  .filter(function (file) {
-    return file.endsWith('.html')
-  })
-  .map(function (page) {
-    return new HtmlWebpackPlugin({
-      filename: page,
-      template: `./src/${page}`,
-    })
-  })
-
-let config = {
-  entry: './src/assets/scripts/index.js',
-  plugins: pages,
-  module: {
-    rules: [cssConfig, imgConfig, jsConfig],
+const imageInCssUrlLoader = {
+  test: /\.(png|jpe?g|gif|svg|ico)$/i,
+  // install url-loader, file-loader
+  // not load the images in html file
+  loader: 'url-loader',
+  options: {
+    limit: 8 * 1024,
+    esModule: false, // use commonJs
+    name: '[contenthash:8].[ext]',
+    outputPath: 'assets/images',
   },
-}
+};
 
-if (currentTask === 'dev') {
-  cssConfig.use.unshift('style-loader')
-  config.output = {
-    filename: 'bundled.js',
-    path: path.resolve(__dirname, 'src'),
-  }
-  config.devServer = {
-    before: function (src, server) {
-      server._watch('./src/**/*.html')
+const otherFilesLoader = {
+  exclude: /\.(css|js|html|less|json|jpg|png|ico)$/,
+  loader: 'file-loader',
+  options: {
+    name: '[contenthash:8].[ext]',
+    outputPath: 'assets/fonts',
+  },
+};
+
+const jsEslint = {
+  test: /\.js$/,
+  enforce: 'pre',
+  exclude: ['/node_modules', '/build'],
+  include: path.resolve(__dirname, 'src'),
+  use: [
+    {
+      loader: 'eslint-loader',
+      options: {
+        fix: true,
+      },
     },
-    contentBase: path.join(__dirname, 'src'),
-    hot: true,
-    port: 3000,
-    host: '0.0.0.0',
-  }
-  config.mode = 'development'
-}
+  ],
+};
+const jsBabel = {
+  test: /\.js$/,
+  exclude: ['/node_modules', '/build'],
+  use: [
+    // {
+    //   loader: 'thread-loader',
+    //   options: { workers: 4
+    //  },
+    // },
+    'babel-loader',
+  ],
+};
 
-if (currentTask === 'build') {
-  cssConfig.use.unshift(MiniCssExtractPlugin.loader)
-  config.output = {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist'),
-  }
-  config.mode = 'production'
-  config.optimization = {
-    splitChunks: { chunks: 'all' },
-    minimize: true,
-    minimizer: [`...`, new CssMinimizerPlugin()],
-  }
-  config.plugins.push(
-    new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
-    new RunAfterCompile(),
-  )
-}
+const commonCssLoader = [
+  isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+  'css-loader',
+  'postcss-loader',
+];
 
-module.exports = config
+const lessCssRule = {
+  // install less , less-loader
+  test: /\.less$/,
+  use: [...commonCssLoader, 'less-loader'],
+};
+
+const cssRule = {
+  test: /\.css$/,
+  use: [...commonCssLoader],
+};
+
+module.exports = (env, argv) => {
+  isDevelopment = argv.mode !== 'production';
+  isProduction = !isDevelopment;
+
+  return {
+    mode: isProduction ? 'production' : 'development',
+    devtool: isDevelopment ? 'eval-source-map' : 'cheap-source-map',
+    entry: ['./src/index.js'],
+    output: {
+      filename: 'built.[name].[contenthash:8].js',
+      path: path.resolve(__dirname, 'build'),
+    },
+    module: {
+      rules: [
+        jsEslint,
+        {
+          oneOf: [
+            jsBabel,
+            imageInHtmlLoader,
+            imageInCssUrlLoader,
+            cssRule,
+            lessCssRule,
+            otherFilesLoader,
+          ],
+        },
+      ],
+    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        favicon: './public/favicon.ico',
+        // minify: {
+        //   collapseWhitespace: true,
+        //   removeComments: true,
+        // },
+      }),
+      // DefinePlugin allows you to create global constants which can be configured at compile time
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development'),
+        },
+      }),
+      new WorkboxWebpackPlugin.GenerateSW({
+        clientsClaim: true,
+        skipWaiting: true,
+      }),
+      // Only enable in production mode
+      isProduction && new CleanWebpackPlugin(),
+      isProduction &&
+        new MiniCssExtractPlugin({
+          filename: 'assets/css/[name].[contenthash:8].css',
+          chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
+        }),
+    ].filter(Boolean),
+    devServer: {
+      contentBase: path.resolve(__dirname, 'build'),
+      compress: true,
+      port: 3089,
+      hot: true,
+    },
+    optimization: {
+      minimizer: [new TerserWebpackPlugin(), new CssMinimizerPlugin()],
+      runtimeChunk: {
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
+      },
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
+  };
+};
