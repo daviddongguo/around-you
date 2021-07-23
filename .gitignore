@@ -52,3 +52,5 @@ Thumbs.db
 .vscode/settings.json
 backend/coverage/
 backend/.env
+backend/combined.log
+backend/error.log
