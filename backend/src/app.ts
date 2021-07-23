@@ -11,7 +11,7 @@ import { indexOfRestaurants } from './components/restaurant/restaurantRoute';
 require('dotenv').config();
 
 const app = express();
-app.get('/test', async (req, res) => {
+app.get('/api/test', async (req, res) => {
   res.status(200).json({
     message: 'Hi, there!',
     url: `${req.url}`,
