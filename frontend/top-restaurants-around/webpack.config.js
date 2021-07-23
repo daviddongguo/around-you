@@ -8,8 +8,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 
-let isDevelopment = process.env.NODE_ENV !== 'production';
-let isProduction = !isDevelopment;
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const isProduction = !isDevelopment;
+
+// eslint-disable-next-line no-console
+// console.log('development---------', isDevelopment);
+// eslint-disable-next-line no-console
+// console.log('production------------', isProduction);
 
 const imageInHtmlLoader = {
   test: /\.html$/,
@@ -91,74 +96,69 @@ const cssRule = {
   use: [...commonCssLoader],
 };
 
-module.exports = (env, argv) => {
-  isDevelopment = argv.mode !== 'production';
-  isProduction = !isDevelopment;
-
-  return {
-    mode: isProduction ? 'production' : 'development',
-    devtool: isDevelopment ? 'eval-source-map' : 'cheap-source-map',
-    entry: ['./src/index.js'],
-    output: {
-      filename: 'built.[name].[contenthash:8].js',
-      path: path.resolve(__dirname, 'build'),
-    },
-    module: {
-      rules: [
-        jsEslint,
-        {
-          oneOf: [
-            jsBabel,
-            imageInHtmlLoader,
-            imageInCssUrlLoader,
-            cssRule,
-            lessCssRule,
-            otherFilesLoader,
-          ],
-        },
-      ],
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: './public/index.html',
-        favicon: './public/favicon.ico',
-        // minify: {
-        //   collapseWhitespace: true,
-        //   removeComments: true,
-        // },
-      }),
-      // DefinePlugin allows you to create global constants which can be configured at compile time
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development'),
-        },
-      }),
-      new WorkboxWebpackPlugin.GenerateSW({
-        clientsClaim: true,
-        skipWaiting: true,
-      }),
-      // Only enable in production mode
-      isProduction && new CleanWebpackPlugin(),
-      isProduction &&
-        new MiniCssExtractPlugin({
-          filename: 'assets/css/[name].[contenthash:8].css',
-          chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
-        }),
-    ].filter(Boolean),
-    devServer: {
-      contentBase: path.resolve(__dirname, 'build'),
-      compress: true,
-      port: 3089,
-      hot: true,
-    },
-    optimization: {
-      minimizer: [new TerserWebpackPlugin(), new CssMinimizerPlugin()],
-      runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
+module.exports = {
+  mode: isProduction ? 'production' : 'development',
+  devtool: isDevelopment ? 'eval-source-map' : 'cheap-source-map',
+  entry: ['./src/index.js'],
+  output: {
+    filename: 'built.[name].[contenthash:8].js',
+    path: path.resolve(__dirname, 'build'),
+  },
+  module: {
+    rules: [
+      jsEslint,
+      {
+        oneOf: [
+          jsBabel,
+          imageInHtmlLoader,
+          imageInCssUrlLoader,
+          cssRule,
+          lessCssRule,
+          otherFilesLoader,
+        ],
       },
-      splitChunks: {
-        chunks: 'all',
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      favicon: './public/favicon.ico',
+      // minify: {
+      //   collapseWhitespace: true,
+      //   removeComments: true,
+      // },
+    }),
+    // DefinePlugin allows you to create global constants which can be configured at compile time
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development'),
       },
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
+    // Only enable in production mode
+    isProduction && new CleanWebpackPlugin(),
+    isProduction &&
+      new MiniCssExtractPlugin({
+        filename: 'assets/css/[name].[contenthash:8].css',
+        chunkFilename: 'assets/css/[name].[contenthash:8].chunk.css',
+      }),
+  ].filter(Boolean),
+  devServer: {
+    contentBase: path.resolve(__dirname, 'build'),
+    compress: true,
+    port: 3089,
+    hot: true,
+  },
+  optimization: {
+    minimizer: [new TerserWebpackPlugin(), new CssMinimizerPlugin()],
+    runtimeChunk: {
+      name: (entrypoint) => `runtime-${entrypoint.name}`,
     },
-  };
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 };
