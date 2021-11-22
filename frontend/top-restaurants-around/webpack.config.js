@@ -153,6 +153,7 @@ module.exports = {
     hot: true,
   },
   optimization: {
+    minimize: isProduction,
     minimizer: [new TerserWebpackPlugin(), new CssMinimizerPlugin()],
     runtimeChunk: {
       name: (entrypoint) => `runtime-${entrypoint.name}`,

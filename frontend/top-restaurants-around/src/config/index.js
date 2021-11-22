@@ -1,6 +1,6 @@
 const config = {
-  server: 'http://davidwu.online',
-  // server: 'http://localhost:3003',
-};
+  // server: 'http://davidwu.online',
+  server: 'http://localhost:3003'
+}
 
-export default config;
+export default config
