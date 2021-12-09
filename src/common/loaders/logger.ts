@@ -1,23 +1,25 @@
+import winston from 'winston'
+import config from '../../../config'
+import fs from 'fs'
+import path from 'path'
 
-import winston from 'winston';
-import config from '../../../config';
+const logDir = 'log'
+if (!fs.existsSync(logDir)) {
+  fs.mkdirSync(logDir)
+}
 
 export const logger = winston.createLogger({
-	level: config.logs.level,
-	format: winston.format.combine(
-		// winston.format.timestamp({
-		// 	format: 'YYYY-MM-DD HH:mm:ss',
-		// }),
-		winston.format.errors({stack: true}),
-		// winston.format.label({label: '-'}),
-		winston.format.colorize({all: true}),
-		winston.format.splat(),
-		winston.format.simple()
-		// winston.format.json()
-	),
-	transports: [
-		new winston.transports.Console(),
-		new winston.transports.File({filename: 'error.log', level: 'error'}),
-		new winston.transports.File({filename: 'combined.log'}),
-	],
-});
+  level: config.logs.level,
+  format: winston.format.combine(
+    winston.format.simple(),
+    winston.format.colorize({ all: true })
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({
+      filename: path.join(logDir, 'error.log'),
+      level: 'error'
+    }),
+    new winston.transports.File({ filename: path.join(logDir, 'combined.log') })
+  ]
+})
