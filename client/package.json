@@ -67,10 +67,7 @@
     "start": "react-scripts start"
   },
   "eslintConfig": {
-    "extends": [
-      "airbnb-base",
-      "prettier"
-    ],
+    "extends": [],
     "env": {
       "browser": true
     }
