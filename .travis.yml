@@ -12,5 +12,6 @@ install:
   - yarn
   - cd client
   - yarn add --dev eslint-config-airbnb-base
+  - yarn add --dev eslint-config-prettier
   - yarn
   - yarn build
