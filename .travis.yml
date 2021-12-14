@@ -13,9 +13,9 @@ cache:
     - client/node_modules
 install:
   - npm install --global cross-env
+  - yarn add -global install-peerdeps
   - yarn
   - cd client
-  - npm install -g install-peerdeps
   - install-peerdeps --dev eslint-config-airbnb
   - install-peerdeps --dev eslint-config-airbnb-base
   - yarn run build
