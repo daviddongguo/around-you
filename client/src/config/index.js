@@ -1,6 +1,6 @@
 const config = {
   server:
-    process.NODE_ENV === 'production'
+    process.env.NODE_ENV === 'production'
       ? 'http://davidwu.online'
       : 'http://localhost:3003'
 }
