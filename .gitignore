@@ -49,8 +49,7 @@ Thumbs.db
 *.wmv
 
 # David
-.vscode/settings.json
-backend/coverage/
-backend/.env
-backend/combined.log
-backend/error.log
+.vscode/
+coverage/
+log/
+.env
