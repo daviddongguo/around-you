@@ -6,7 +6,7 @@ services:
   - mongodb
   - redis-server
 env:
-  - NODE_ENV=production PORT=3000
+  - NODE_ENV=production PORT=3003
 cache:
   directories:
     - node_modules
