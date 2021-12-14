@@ -11,5 +11,5 @@ it('Returns 200 statusCode and a message to /api/ping', async () => {
   const response = await request(app).get('/api/ping')
   expect(response.status).toEqual(200)
   expect(response.body).not.toBeNull()
-  expect(response.body.message).toContain('Hi, there!')
+  expect(response.body.message).toContain('success')
 })
