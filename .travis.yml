@@ -12,5 +12,6 @@ cache:
     - node_modules
     - client/node_modules
 install:
+  - sudo npm install --global cross-env
   - yarn
   - yarn run build:client
