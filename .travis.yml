@@ -15,5 +15,6 @@ install:
   - npm install --global cross-env
   - yarn
   - cd client
+  - yarn add --dev eslint-config-airbnb-base
   - yarn
   - yarn build
