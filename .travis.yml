@@ -12,9 +12,7 @@ cache:
     - node_modules
     - client/node_modules
 install:
-  - npm install --global cross-env
+  - yarn
   - cd client
-  - yarn add -D eslint-config-airbnb
-  - yarn add -D eslint-config-airbnb-base
   - yarn
   - yarn build
