@@ -9,9 +9,10 @@
   "scripts": {
     "start": "ts-node ./src/index.ts",
     "server": "ts-node-dev ./src/index.ts --ignore tests",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+    "client": "yarn --cwd client start",
+    "dev": "concurrently \"yarn server\" \"yarn client\" ",
     "pm2": "pm2 start ./src/index.ts --watch --name topRestaurantsApi",
+    "build:client": "yarn --cwd client && yarn --cwd client build",
     "test": "jest --no-cache --coverage --verbose=true"
   },
   "jest": {

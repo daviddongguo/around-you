@@ -1,6 +1,7 @@
 {
   "name": "top-restaurants-around",
   "version": "0.1.0",
+  "homepage": "http://davidwu.online/aroundyou",
   "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -8,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "0.21.1",
     "axios-hooks": "2.3.0",
+    "backend": "file:..",
     "bootstrap": "4.6.0",
     "dotenv": "8.2.0",
     "lazysizes": "^5.3.0",
@@ -61,8 +63,7 @@
     "workbox-webpack-plugin": "6.1.5"
   },
   "scripts": {
-    "dev": "webpack serve",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production react-scripts build",
     "start": "react-scripts start"
   },
   "eslintConfig": {
