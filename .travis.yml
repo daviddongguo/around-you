@@ -16,3 +16,7 @@ install:
   - yarn
   - yarn build
   - cd ..
+script:
+  - nohup yarn start &
+  - sleep 3
+  - yarn test
