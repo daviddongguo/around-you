@@ -5,18 +5,12 @@ import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import { indexOfAdvertising } from './components/Advertising/advertisingRoute'
+import { pingRouter } from './components/ping'
 import { indexOfRestaurants } from './components/restaurant/restaurantRoute'
 
 require('dotenv').config()
 
 const app = express()
-app.get('/api/ping', async (req, res) => {
-  res.status(200).json({
-    message: 'success',
-    success: true,
-    url: `${req.url}`
-  })
-})
 
 app.enable('trust proxy')
 app.use(cors())
@@ -25,6 +19,7 @@ app.use(json())
 app.use(morgan('dev'))
 app.use(helmet())
 
+app.use(pingRouter)
 app.use(indexOfRestaurants)
 app.use(indexOfAdvertising)
 
