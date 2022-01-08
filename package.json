@@ -11,7 +11,7 @@
     "server": "ts-node-dev ./src/index.ts --ignore tests",
     "client": "yarn --cwd client start",
     "dev": "concurrently \"yarn server\" \"yarn client\" ",
-    "pm2": "pm2 start ./src/index.ts --watch --name top",
+    "pm2": "pm2 start ./dist/src/index.js --watch --name top",
     "build:client": "yarn --cwd client && yarn --cwd client build",
     "test": "jest --no-cache --coverage --verbose=true"
   },
