@@ -1,5 +1,5 @@
-import useAxios from 'axios-hooks';
-import React from 'react';
+import useAxios from 'axios-hooks'
+import React from 'react'
 import {
   Button,
   Card,
@@ -8,19 +8,19 @@ import {
   CardTitle,
   Col,
   Container,
-  Row,
-} from 'reactstrap';
-import config from '../../../config/index';
+  Row
+} from 'reactstrap'
+import config from '../../../config/index'
 
 export default function Top20Show() {
   const [{ data, loading, error }] = useAxios(
-    `${config.server}/api/restaurants/top20bydistance`,
-  );
+    `${config.server}/api/restaurants/top20bydistance`
+  )
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error!</p>;
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error!</p>
   const list = data.restaurants.slice(0, 3).map((restaurant, i) => {
-    const imageUrl = restaurant.photoreference;
+    const imageUrl = restaurant.photoreference
 
     return (
       <div id='top20_card' key={i}>
@@ -35,7 +35,7 @@ export default function Top20Show() {
                 />
               </Col>
               <Col sm={12} md={8}>
-                <div className='top20-card-body'>
+                <div class='top20-card-body'>
                   <Row>
                     <Col sm={12} md={8}>
                       <Button color='danger'>
@@ -65,15 +65,15 @@ export default function Top20Show() {
           </Container>
         </Card>
       </div>
-    );
-  });
+    )
+  })
 
   const title = (
     <div class='title'>
       <h2>General list of Restaurants</h2>
       <p>Sorted by distance (closest first)</p>
     </div>
-  );
+  )
 
   return (
     <div id='top20show'>
@@ -88,5 +88,5 @@ export default function Top20Show() {
         <Col></Col>
       </Row>
     </div>
-  );
+  )
 }
