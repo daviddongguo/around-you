@@ -1,6 +1,10 @@
 import axios from 'axios'
 import config from '../../config'
 import { logger } from '../../common/loaders/logger'
+type Location = {
+  lat: number
+  lng: number
+}
 
 export class Restaurant {
   static async searchByDistance() {
@@ -110,6 +114,8 @@ export class Restaurant {
       photoreference: string
       place_id: string
       rating: string
+      location: Location
+      icon: string
     }[] = []
 
     try {
@@ -149,12 +155,16 @@ export class Restaurant {
         if (item.photos) {
           photoreference = item.photos[0].photo_reference
         }
+        var location = item.geometry.location
+        var icon = item.icon
 
         restaurants.push({
           name: item.name,
           photoreference,
           place_id: item.place_id,
-          rating: item.rating
+          rating: item.rating,
+          location,
+          icon
         })
       })
 
