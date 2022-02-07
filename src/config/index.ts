@@ -2,8 +2,7 @@ import dotenv from 'dotenv'
 
 const envFound = dotenv.config()
 if (envFound.error) {
-  // This error should crash whole process
-  console.error("⚠️  Couldn't find .env file  ⚠️")
+  // TODO: log it
 }
 
 export default {
